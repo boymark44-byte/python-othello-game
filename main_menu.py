@@ -40,11 +40,11 @@ def main_menu():
 
         PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(510, 250), 
                             text_input="AI", font=get_font(50), base_color="#d7fcd4", hovering_color="White")
-        OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(510, 350), 
+        OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(510, 370), 
                             text_input="AI-Pruning", font=get_font(50), base_color="#d7fcd4", hovering_color="White")
-        OPTIONS_BUTTON2 = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(510, 450), 
+        OPTIONS_BUTTON2 = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(510, 490), 
                             text_input="PVP", font=get_font(50), base_color="#d7fcd4", hovering_color="White")
-        QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(510, 550), 
+        QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(510, 610), 
                             text_input="QUIT", font=get_font(50), base_color="#d7fcd4", hovering_color="White")
 
         SCREEN.blit(MENU_TEXT, MENU_RECT)
