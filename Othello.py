@@ -223,7 +223,7 @@ class Images:
 
     def __init__(self):
         self.width = 50
-        self.background = pygame.image.load('images/background.gif')
+        self.background = pygame.image.load('images/background.jpg')
         self.black = pygame.image.load('images/black.gif')
         self.white = pygame.image.load('images/white.gif')
         self.available = pygame.image.load('images/available.gif')
