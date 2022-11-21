@@ -288,3 +288,8 @@ def draw(screen, images, chessboard):
     textRectObj = textSurfaceObj.get_rect()
     textRectObj.center = (pos + 100, pos - 150)
     screen.blit(textSurfaceObj, textRectObj)
+
+    textSurfaceObj = fontObj.render("Press 'backspace' to return to main menu", True, (0, 0, 0))
+    textRectObj = textSurfaceObj.get_rect()
+    textRectObj.center = (pos - 150, pos - 50)
+    screen.blit(textSurfaceObj, textRectObj)
