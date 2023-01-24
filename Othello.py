@@ -226,7 +226,7 @@ class Images:
         self.background = pygame.image.load('images/background.jpg')
         self.black = pygame.image.load('images/black.gif')
         self.white = pygame.image.load('images/white.gif')
-        self.available = pygame.image.load('images/available.gif')
+        self.available = pygame.image.load('images/available.png')
         self.blank = pygame.image.load('images/blank.gif')
 
 
@@ -273,23 +273,29 @@ def draw(screen, images, chessboard):
     else:
         screen.blit(images.black, (pos, pos // 2 - images.width * 1.5))
         screen.blit(images.available, (pos, pos // 2 + images.width * 0.5))
-    fontObj = pygame.font.Font(None, images.width)
-    textSurfaceObj = fontObj.render(str(chessboard.count_black), True, (0, 0, 0))
+    fontObj = pygame.font.Font("assets/font.TTF", images.width)
+    textSurfaceObj = fontObj.render(str(chessboard.count_black), True, (255, 255, 255))
     textRectObj = textSurfaceObj.get_rect()
     textRectObj.center = (pos + images.width * 2, pos // 2 - images.width)
     screen.blit(textSurfaceObj, textRectObj)
-    textSurfaceObj = fontObj.render(str(chessboard.count_white), True, (0, 0, 0))
+    textSurfaceObj = fontObj.render(str(chessboard.count_white), True, (255, 255, 255))
     textRectObj = textSurfaceObj.get_rect()
     textRectObj.center = (pos + images.width * 2, pos // 2 + images.width)
     screen.blit(textSurfaceObj, textRectObj)
 
     # draw text
-    textSurfaceObj = fontObj.render("Press 'b' to undo", True, (0, 0, 0))
+    textSurfaceObj = fontObj.render("OTHELLO", True, (255, 255, 255))
     textRectObj = textSurfaceObj.get_rect()
-    textRectObj.center = (pos + 100, pos - 150)
+    textRectObj.center = (pos - 170, pos - 625)
     screen.blit(textSurfaceObj, textRectObj)
 
-    textSurfaceObj = fontObj.render("Press 'backspace' to return to main menu", True, (0, 0, 0))
+    fontObj2 = pygame.font.Font("assets/font.TTF", 30)
+    textSurfaceObj = fontObj2.render("'backspace' = undo move", True, (255, 255, 255))
     textRectObj = textSurfaceObj.get_rect()
-    textRectObj.center = (pos - 150, pos - 50)
+    textRectObj.center = (pos + 100, pos - 525)
+    screen.blit(textSurfaceObj, textRectObj)
+
+    textSurfaceObj = fontObj2.render("'Esc' = main menu", True, (255, 255, 255))
+    textRectObj = textSurfaceObj.get_rect()
+    textRectObj.center = (pos + 100, pos - 475)
     screen.blit(textSurfaceObj, textRectObj)
