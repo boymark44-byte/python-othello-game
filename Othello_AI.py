@@ -2,7 +2,7 @@ import pygame
 from Othello import *
 import main_menu
 
-def get_font(size): # Returns Press-Start-2P in the desired size
+def get_font(size):
     return pygame.font.Font("assets/font.ttf", size)
 
 
@@ -10,7 +10,6 @@ class ChessboardTreeNode:
     
     def __init__(self, chessboard):
         self.parent = None
-        # self.kids: {(i, j): node}
         self.kids = {}
         self.chessboard = chessboard
         self.score = 100 * (chessboard.count_stable_white - chessboard.count_stable_black) \
@@ -70,14 +69,11 @@ class ChessboardTree:
                 scores.update({key: self.MaxMin(node.kids[key], player_color, layer - 1)})
             if node.chessboard.offense == player_color:
                 min_key = min(scores, key=scores.get)
-                # print('layer:', layer, 'min:', scores[min_key])
                 return scores[min_key]
             else:
                 max_key = max(scores, key=scores.get)
-                # print('layer:', layer, 'max:', scores[max_key])
                 return scores[max_key]
         else:
-            # print('layer:', layer, 'leaf:', node.score)
             return node.score
 
 
@@ -87,12 +83,9 @@ def setChessAI(chessboard, set_i, set_j):
 
     if 0 <= set_i < chessboard.row and 0 <= set_j < chessboard.col and \
     chessboard.chesses[set_i][set_j] == -1:
-        # deep copy to new chessboard
         chessboard_new = chessboard.copy()
-        # set chess
         chessboard_new.chesses[set_i][set_j] = chessboard.offense
         chessboard_new.offense = 3 - chessboard.offense
-        # update
         chessboard_new.reverse(set_i, set_j)
         chessboard_new.updateAvailable()
         chessboard_new.updateStable()
@@ -160,11 +153,11 @@ def main():
                     chessboardTree.expandTree()
 
             elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_b:
+                if event.key == pygame.K_BACKSPACE:
                     if chessboardTree.root.parent:
                         chessboardTree.root = chessboardTree.root.parent
                         chessboard = chessboardTree.root.chessboard
-                elif event.key == pygame.K_BACKSPACE:
+                elif event.key == pygame.K_ESCAPE:
                     main_menu.main_menu()
                     
                 # update screen

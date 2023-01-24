@@ -40,11 +40,11 @@ def main():
                         chessboard = chessboard_new
                         chessboards.append(chessboard)
                 elif event.type == pygame.KEYUP:
-                    if event.key == pygame.K_b:
+                    if event.key == pygame.K_BACKSPACE:
                         if len(chessboards) > 1:
                             chessboards.pop(-1)
                             chessboard = chessboards[-1]
-                    elif event.key == pygame.K_BACKSPACE:
+                    elif event.key == pygame.K_ESCAPE:
                         main_menu.main_menu()
                 
                 # update screen

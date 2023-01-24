@@ -185,11 +185,11 @@ def main():
                     chessboardTree.expandTree()
 
             elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_b:
+                if event.key == pygame.K_BACKSPACE:
                     if chessboardTree.root.parent:
                         chessboardTree.root = chessboardTree.root.parent
                         chessboard = chessboardTree.root.chessboard
-                elif event.key == pygame.K_BACKSPACE:
+                elif event.key == pygame.K_ESCAPE:
                     main_menu.main_menu()
                 # update screen
                 draw(screen, images, chessboard)
