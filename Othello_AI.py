@@ -12,9 +12,9 @@ class ChessboardTreeNode:
         self.parent = None
         self.kids = {}
         self.chessboard = chessboard
-        self.score = 100 * (chessboard.count_stable_white - chessboard.count_stable_black) \
-            + (chessboard.count_total_stable_direct_white 
-            - chessboard.count_total_stable_direct_black)
+        self.score = 100 * (chessboard.count_mobility_white - chessboard.count_mobility_black) \
+            + (chessboard.count_total_mobility_direct_white 
+            - chessboard.count_total_mobility_direct_black)
 
 
 class ChessboardTree:
