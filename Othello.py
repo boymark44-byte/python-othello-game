@@ -186,8 +186,8 @@ class Chessboard:
         chessboard_new.count_available = self.count_available
         chessboard_new.count_mobility_black = self.count_mobility_black
         chessboard_new.count_mobility_white = self.count_mobility_white
-        #chessboard_new.count_total_mobility_direct_black = self.count_total_mobility_direct_black
-        #chessboard_new.count_total_mobility_direct_white = self.count_total_mobility_direct_white
+        chessboard_new.count_total_mobility_direct_black = self.count_total_mobility_direct_black
+        chessboard_new.count_total_mobility_direct_white = self.count_total_mobility_direct_white
         return chessboard_new
 
 
