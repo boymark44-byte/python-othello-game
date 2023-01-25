@@ -21,10 +21,10 @@ class Chessboard:
         # init count
         self.count_black = self.count_white = 2
         self.count_available = 4
-        self.count_stable_black = 0
-        self.count_stable_white = 0
-        self.count_total_stable_direct_black = 0
-        self.count_total_stable_direct_white = 0
+        self.count_mobility_black = 0
+        self.count_mobility_white = 0
+        self.count_total_mobility_direct_black = 0
+        self.count_total_mobility_direct_white = 0
         # init available pos
         self.available = []
         self.updateAvailable()
@@ -95,8 +95,8 @@ class Chessboard:
         find_new_stable_chess = True
         while find_new_stable_chess:
             find_new_stable_chess = False
-            self.count_total_stable_direct_black = 0
-            self.count_total_stable_direct_white = 0
+            self.count_total_mobility_direct_black = 0
+            self.count_total_mobility_direct_white = 0
             for i in range(self.row):
                 for j in range(self.col):
                     if (self.chesses[i][j] == 1 or self.chesses[i][j] == 2) and not self.stable[i][j]:
@@ -109,9 +109,9 @@ class Chessboard:
                             self.stable[i][j] = 1
                         else:
                             if self.chesses[i][j] == 1:
-                                self.count_total_stable_direct_white += count_stable_direction
+                                self.count_total_mobility_direct_white += count_stable_direction
                             elif self.chesses[i][j] == 2:
-                                self.count_total_stable_direct_black += count_stable_direction
+                                self.count_total_mobility_direct_black += count_stable_direction
 
 
     def checkDirectionStable(self, i, j, direction):
@@ -156,7 +156,7 @@ class Chessboard:
     def updateCount(self):
         self.count_black = self.count_white = 0
         self.count_available = 0
-        self.count_stable_white = self.count_stable_black = 0
+        self.count_mobility_white = self.count_mobility_black = 0
         for i in range(self.row):
             for j in range(self.col):
                 chess = self.chesses[i][j]
@@ -168,9 +168,9 @@ class Chessboard:
                     self.count_available += 1
                 if self.stable[i][j] == 1:
                     if self.chesses[i][j] == 1:
-                        self.count_stable_white += 1
+                        self.count_mobility_white += 1
                     elif self.chesses[i][j] == 2:
-                        self.count_stable_black += 1
+                        self.count_mobility_black += 1
     
 
     def copy(self):
@@ -184,10 +184,10 @@ class Chessboard:
         chessboard_new.count_black = self.count_black
         chessboard_new.count_white = self.count_white
         chessboard_new.count_available = self.count_available
-        chessboard_new.count_stable_black = self.count_stable_black
-        chessboard_new.count_stable_white = self.count_stable_white
-        chessboard_new.count_total_stable_direct_black = self.count_total_stable_direct_black
-        chessboard_new.count_total_stable_direct_white = self.count_total_stable_direct_white
+        chessboard_new.count_mobility_black = self.count_mobility_black
+        chessboard_new.count_mobility_white = self.count_mobility_white
+        #chessboard_new.count_total_mobility_direct_black = self.count_total_mobility_direct_black
+        #chessboard_new.count_total_mobility_direct_white = self.count_total_mobility_direct_white
         return chessboard_new
 
 
