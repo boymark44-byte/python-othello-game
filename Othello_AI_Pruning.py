@@ -13,9 +13,15 @@ class ChessboardTreeNode:
 
     def getScore(self):
         chessboard = self.chessboard
-        return 100 * (chessboard.count_stable_white - chessboard.count_stable_black) \
-            + (chessboard.count_total_stable_direct_white
-               - chessboard.count_total_stable_direct_black)
+        if chessboard.count_mobility_black > chessboard.count_mobility_white:
+            m = (100.0 * chessboard.count_mobility_black) / (chessboard.count_mobility_black + chessboard.count_mobility_white)
+        elif chessboard.count_mobility_black < chessboard.count_mobility_white:
+            m = -(100.0 * chessboard.count_mobility_white) / (chessboard.count_mobility_black + chessboard.count_mobility_white)
+        else:
+            m = 0
+
+        return m
+        #return 100 * (chessboard.count_mobility_white - chessboard.count_mobility_black) + (chessboard.count_total_stable_direct_white - chessboard.count_total_stable_direct_black)
 
 
 class ChessboardTree:
@@ -73,7 +79,6 @@ class ChessboardTree:
                         break
                     if beta > score:
                         beta = score
-                # print('layer:', layer, 'min:', beta, 'pruning:', pruning_flag)
                 return beta
             # max layer
             else:
@@ -95,13 +100,12 @@ class ChessboardTree:
                         break
                     if alpha < score:
                         alpha = score
-                # print('layer:', layer, 'max:', alpha, 'pruning:', pruning_flag)
                 return alpha
         else:
             node.chessboard.updateStable()
             node.chessboard.updateCount()
             score = node.getScore()
-            # print('layer:', layer, 'leaf:', node.score)
+            print(score)
             return score
 
 
@@ -119,13 +123,11 @@ def setChessAI(chessboard, set_i, set_j):
         # update
         chessboard_new.reverse(set_i, set_j)
         chessboard_new.updateAvailable()
-        # chessboard_new.updateStable()
         chessboard_new.updateCount()
 
         if chessboard_new.count_available == 0:
             chessboard_new.offense = 3 - chessboard_new.offense
             chessboard_new.updateAvailable()
-            # chessboard_new.updateCount()
 
     return chessboard_new
 
